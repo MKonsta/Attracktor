@@ -15,15 +15,6 @@ public class User {
     private int subsciptions;
     private int subscibers;
 
-    public User(String name, String email, String password, int publications, int subsciptions, int subscibers) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.publications = publications;
-        this.subsciptions = subsciptions;
-        this.subscibers = subscibers;
-    }
-
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
