@@ -12,8 +12,8 @@ public class User {
     private String email;
     private String password;
     private int publications;
-    private int subsciptions;
-    private int subscibers;
+    private int subsciptions; //подписки
+    private int subscibers; //подписчики
 
     public User(String name, String email, String password) {
         this.name = name;
