@@ -8,6 +8,8 @@ public interface UserService {
 
     public User getUserById(String id);
 
+    public User get(String id);
+
     public void save(User user);
 
     public void delete(String id);
