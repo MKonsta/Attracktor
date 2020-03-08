@@ -1,7 +1,6 @@
 package com.example.hw50.util;
 
 import com.example.hw50.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Configuration
 public class PreloadDataBasewithData {
@@ -18,16 +16,19 @@ public class PreloadDataBasewithData {
     private final PublicationRepository publicationRepository;
     private final CommentRepository commentRepository;
     private final LikeRepository likeRepository;
+    private final EventRepository eventRepository;
 
 
     public PreloadDataBasewithData(UserRepository userRepository,
                                    PublicationRepository publicationRepository,
                                    CommentRepository commentRepository,
-                                   LikeRepository likeRepository) {
+                                   LikeRepository likeRepository,
+                                   EventRepository eventRepository) {
         this.userRepository = userRepository;
         this.publicationRepository = publicationRepository;
         this.commentRepository = commentRepository;
         this.likeRepository = likeRepository;
+        this.eventRepository = eventRepository;
     }
 
     @Bean
@@ -49,6 +50,10 @@ public class PreloadDataBasewithData {
         likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
         likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
         likeRepository.save(new Like(userRepository.findUserByName("Grisha").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
+
+        eventRepository.save(new Event(userRepository.findUserByName("Ivan").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
+        eventRepository.save(new Event(userRepository.findUserByName("Fedor").getId(), userRepository.findUserByName("Ivan").getId(), LocalDateTime.now()));
+        eventRepository.save(new Event(userRepository.findUserByName("Grisha").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
 
         return null;
     }

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
 @Document
-public class Events {
+public class Event {
 
     //Подписки. События - кто и на кого подписался;
 
@@ -16,7 +16,7 @@ public class Events {
     private String subscriberUserId; //id юзера который подписался
     private LocalDateTime date;
 
-    public Events(String publisherUserId, String subscriberUserId, LocalDateTime date) {
+    public Event(String publisherUserId, String subscriberUserId, LocalDateTime date) {
         this.publisherUserId = publisherUserId;
         this.subscriberUserId = subscriberUserId;
         this.date = date;
