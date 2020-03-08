@@ -36,6 +36,9 @@ public class PreloadDataBasewithData {
 
         userRepository.deleteAll();
         publicationRepository.deleteAll();
+        commentRepository.deleteAll();
+        likeRepository.deleteAll();
+        eventRepository.deleteAll();
 
         userRepository.saveAll(createUsers());
 
@@ -59,6 +62,7 @@ public class PreloadDataBasewithData {
     }
 
     private List<User> createUsers() {
+
         List<User> result = new ArrayList<>();
 
         result.add(new User("Fedor", "fed@mail.ru", "123"));
