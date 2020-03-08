@@ -17,12 +17,17 @@ public class PreloadDataBasewithData {
     private final UserRepository userRepository;
     private final PublicationRepository publicationRepository;
     private final CommentRepository commentRepository;
+    private final LikeRepository likeRepository;
 
 
-    public PreloadDataBasewithData(UserRepository userRepository, PublicationRepository publicationRepository, CommentRepository commentRepository) {
+    public PreloadDataBasewithData(UserRepository userRepository,
+                                   PublicationRepository publicationRepository,
+                                   CommentRepository commentRepository,
+                                   LikeRepository likeRepository) {
         this.userRepository = userRepository;
         this.publicationRepository = publicationRepository;
         this.commentRepository = commentRepository;
+        this.likeRepository = likeRepository;
     }
 
     @Bean
@@ -41,6 +46,9 @@ public class PreloadDataBasewithData {
         commentRepository.save(new Comment("Comment2", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
         commentRepository.save(new Comment("Comment3", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
 
+        likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
+        likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
+        likeRepository.save(new Like(userRepository.findUserByName("Grisha").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
 
         return null;
     }
