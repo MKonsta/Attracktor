@@ -83,8 +83,4 @@ public class User {
         this.subscibers = subscibers;
     }
 
-    public void addPublication(String text, String img) {
-        Publication publication = new Publication(img, text, LocalDateTime.now(), this.id);
-        publicationRepository.save(publication);
-    }
 }
