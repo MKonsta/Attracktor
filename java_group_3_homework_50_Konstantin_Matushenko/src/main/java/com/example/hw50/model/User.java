@@ -1,7 +1,10 @@
 package com.example.hw50.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
 
 @Document
 public class User {
@@ -14,6 +17,9 @@ public class User {
     private int publications;
     private int subsciptions; //подписки
     private int subscibers; //подписчики
+
+    @Autowired
+    PublicationRepository publicationRepository;
 
     public User(String name, String email, String password) {
         this.name = name;
@@ -75,5 +81,10 @@ public class User {
 
     public void setSubscibers(int subscibers) {
         this.subscibers = subscibers;
+    }
+
+    public void addPublication(String text, String img) {
+        Publication publication = new Publication(img, text, LocalDateTime.now(), this.id);
+        publicationRepository.save(publication);
     }
 }
