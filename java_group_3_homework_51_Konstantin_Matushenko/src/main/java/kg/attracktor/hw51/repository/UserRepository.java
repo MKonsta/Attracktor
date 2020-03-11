@@ -1,9 +1,9 @@
 package kg.attracktor.hw51.repository;
 
 import kg.attracktor.hw51.model.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-@Repository
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserRepository extends MongoRepository<User, String> {
+
+    public User findByEmail(String email);
 }
