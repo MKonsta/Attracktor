@@ -1,13 +1,11 @@
 package com.example.hw50.service;
 
-import com.example.hw50.model.Publication;
-import com.example.hw50.model.PublicationRepository;
+import com.example.hw50.repository.PublicationRepository;
 import com.example.hw50.model.User;
-import com.example.hw50.model.UserRepository;
+import com.example.hw50.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

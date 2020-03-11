@@ -1,7 +1,7 @@
 package com.example.hw50.service;
 
 import com.example.hw50.model.Publication;
-import com.example.hw50.model.PublicationRepository;
+import com.example.hw50.repository.PublicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

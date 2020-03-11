@@ -1,10 +1,9 @@
 package com.example.hw50.model;
 
+import com.example.hw50.repository.PublicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDateTime;
 
 @Document
 public class User {

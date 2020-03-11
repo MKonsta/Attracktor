@@ -1,6 +1,7 @@
 package com.example.hw50.util;
 
 import com.example.hw50.model.*;
+import com.example.hw50.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
