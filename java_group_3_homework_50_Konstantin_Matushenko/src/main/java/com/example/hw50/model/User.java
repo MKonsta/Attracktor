@@ -3,6 +3,7 @@ package com.example.hw50.model;
 import com.example.hw50.repository.PublicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,7 +11,9 @@ public class User {
 
     @Id
     private String id;
+    @Indexed
     private String name;
+    @Indexed
     private String email;
     private String password;
     private int publications;

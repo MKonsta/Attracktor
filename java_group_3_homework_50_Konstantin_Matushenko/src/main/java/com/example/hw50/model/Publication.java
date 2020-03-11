@@ -1,6 +1,7 @@
 package com.example.hw50.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,9 @@ public class Publication {
     @Id
     private String id;
     private String img;
+    @Indexed
     private String discription;
+    @Indexed
     private LocalDateTime date;
     private String userId;
 

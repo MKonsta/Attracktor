@@ -1,6 +1,7 @@
 package com.example.hw50.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -10,7 +11,9 @@ public class Like {
 
     @Id
     private String id;
+    @Indexed
     private String userID;
+    @Indexed
     private String publicationId;
     private LocalDateTime date;
 
