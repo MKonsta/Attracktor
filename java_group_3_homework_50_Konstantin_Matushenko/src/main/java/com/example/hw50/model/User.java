@@ -4,7 +4,12 @@ import com.example.hw50.repository.PublicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Document
 public class User {
@@ -16,9 +21,10 @@ public class User {
     @Indexed
     private String email;
     private String password;
-    private int publications;
-    private int subsciptions; //подписки
-    private int subscibers; //подписчики
+    @DBRef
+    private List<User> subsciptions; //подписки
+    @DBRef
+    private List<User> subscibers; //подписчики
 
     @Autowired
     PublicationRepository publicationRepository;
@@ -27,6 +33,8 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.subscibers = new ArrayList<>();
+        this.subsciptions = new ArrayList<>();
     }
 
     public String getId() {
@@ -61,28 +69,19 @@ public class User {
         this.password = password;
     }
 
-    public int getPublications() {
-        return publications;
-    }
-
-    public void setPublications(int publications) {
-        this.publications = publications;
-    }
-
-    public int getSubsciptions() {
+    public List<User> getSubsciptions() {
         return subsciptions;
     }
 
-    public void setSubsciptions(int subsciptions) {
+    public void setSubsciptions(List<User> subsciptions) {
         this.subsciptions = subsciptions;
     }
 
-    public int getSubscibers() {
+    public List<User> getSubscibers() {
         return subscibers;
     }
 
-    public void setSubscibers(int subscibers) {
+    public void setSubscibers(List<User> subscibers) {
         this.subscibers = subscibers;
     }
-
 }

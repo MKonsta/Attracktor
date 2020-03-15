@@ -2,6 +2,7 @@ package com.example.hw50.util;
 
 import com.example.hw50.model.*;
 import com.example.hw50.repository.*;
+import com.example.hw50.service.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,18 +19,21 @@ public class PreloadDataBasewithData {
     private final CommentRepository commentRepository;
     private final LikeRepository likeRepository;
     private final EventRepository eventRepository;
+    private final UserServiceImpl userService;
 
 
     public PreloadDataBasewithData(UserRepository userRepository,
                                    PublicationRepository publicationRepository,
                                    CommentRepository commentRepository,
                                    LikeRepository likeRepository,
-                                   EventRepository eventRepository) {
+                                   EventRepository eventRepository,
+                                   UserServiceImpl userService) {
         this.userRepository = userRepository;
         this.publicationRepository = publicationRepository;
         this.commentRepository = commentRepository;
         this.likeRepository = likeRepository;
         this.eventRepository = eventRepository;
+        this.userService = userService;
     }
 
     @Bean
@@ -47,9 +51,11 @@ public class PreloadDataBasewithData {
         publicationRepository.save(new Publication("img1", "text1", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
         publicationRepository.save(new Publication("img2", "text2", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
 
-        commentRepository.save(new Comment("Comment1", LocalDateTime.now(), userRepository.findUserByName("Fedor").getId()));
-        commentRepository.save(new Comment("Comment2", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
-        commentRepository.save(new Comment("Comment3", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
+        userService.addComment("new Comment1", publicationRepository.findByDiscription("text0").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
+        userService.addComment("new Comment2", publicationRepository.findByDiscription("text1").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
+//        commentRepository.save(new Comment("Comment1", LocalDateTime.now(), userRepository.findUserByName("Fedor").getId()));
+//        commentRepository.save(new Comment("Comment2", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
+//        commentRepository.save(new Comment("Comment3", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
 
         likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
         likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
@@ -58,6 +64,8 @@ public class PreloadDataBasewithData {
         eventRepository.save(new Event(userRepository.findUserByName("Ivan").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
         eventRepository.save(new Event(userRepository.findUserByName("Fedor").getId(), userRepository.findUserByName("Ivan").getId(), LocalDateTime.now()));
         eventRepository.save(new Event(userRepository.findUserByName("Grisha").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
+
+        userService.subscribe(userService.getUserByEmail("fed@mail.ru").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
 
         return null;
     }
@@ -69,6 +77,15 @@ public class PreloadDataBasewithData {
         result.add(new User("Fedor", "fed@mail.ru", "123"));
         result.add(new User("Ivan", "ivan@mail.ru", "123"));
         result.add(new User("Grisha", "stepan@mail.ru", "123"));
+
+//        userService.subscribe(userService.getUserByEmail("fed@mail.ru").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
+
+
+//        User subscriber = userService.getUserById(userService.getUserByEmail("ivan@mail.ru").getId());
+//        user.getSubscibers().add(subscriber);
+//        subscriber.getSubsciptions().add(user);
+//        userRepository.save(user);
+//        userRepository.save(subscriber);
 
         return result;
     }

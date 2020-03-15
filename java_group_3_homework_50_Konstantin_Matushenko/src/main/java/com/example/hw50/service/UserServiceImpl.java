@@ -1,51 +1,141 @@
 package com.example.hw50.service;
 
-import com.example.hw50.repository.PublicationRepository;
-import com.example.hw50.model.User;
-import com.example.hw50.repository.UserRepository;
+import com.example.hw50.model.*;
+import com.example.hw50.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl {
 
     private final UserRepository userRepository;
     private final PublicationRepository publicationRepository;
+    private final LikeRepository likeRepository;
+    private final CommentRepository commentRepository;
+    private final EventRepository eventRepository;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, PublicationRepository publicationRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           PublicationRepository publicationRepository,
+                           LikeRepository likeRepository,
+                           CommentRepository commentRepository,
+                           EventRepository eventRepository) {
         this.userRepository = userRepository;
         this.publicationRepository = publicationRepository;
+        this.likeRepository = likeRepository;
+        this.commentRepository = commentRepository;
+        this.eventRepository = eventRepository;
     }
 
-    @Override
+    public User getUserByName(String name) {
+        return userRepository.findUserByName(name);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    public boolean existsUser(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public List<Publication> getUsersPublications(String email) {
+        return publicationRepository.findAllByUserId(getUserByEmail(email).getId());
+    }
+
+    //Выборка публикаций для своей ленты на основе подписок на других пользователей
+    public List<Publication> getLentaOfPubForUser(String email) {
+        List<Publication> result = new ArrayList<>();
+
+        List<User> subscriptions  = userRepository.findUserByEmail(email).getSubsciptions();
+
+        for (User user : subscriptions) {
+            result.addAll(getUsersPublications(user.getEmail()));
+        }
+
+        return result;
+    }
+
+    //Проверка на установку "лайка" на публикацию.
+    public boolean checkLikeForPublication(String userEmail, String publicationId) {
+
+        String userId = getUserByEmail(userEmail).getId();
+
+        if (likeRepository.existsByUserID(userId)) {
+
+            for (Like like : likeRepository.findAllByUserID(userId)) {
+                if (like.getPublicationId().equals(publicationId)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     public User getUserById(String id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public User get(String id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
-    @Override
     public void save(User user) {
         userRepository.save(user);
     }
 
-    @Override
     public void delete(String id) {
         userRepository.deleteById(id);
     }
 
-    @Override
     public List<User> getAll() {
         return (List<User>) userRepository.findAll();
     }
 
+    //регистрация нового юзера
+    public User addNewUser(String name, String email, String password) {
+
+        if (!existsUser(email)) {
+            User user = new User(name, email, password);
+            userRepository.save(user);
+            return user;
+        }
+        return null;
+    }
+
+    public Publication addPublication(String text, String img, String userId) {
+        Publication publication = new Publication(img, text, LocalDateTime.now(), userId);
+        publicationRepository.save(publication);
+        return publication;
+    }
+
+    public Like addLike(String publicationId, String userId) {
+        Like like = new Like(userId, publicationId, LocalDateTime.now());
+        likeRepository.save(like);
+        return like;
+    }
+
+    public Comment addComment(String content,  String publicationId, String userId) {
+        Comment comment = new Comment(content, LocalDateTime.now(), userId, publicationId);
+        commentRepository.save(comment);
+        return comment;
+    }
+
+    //подписка одного пользователя на другого
+    public void subscribe(String userId, String subscriberId) {
+        User user = getUserById(userId);
+        User subscriber = getUserById(subscriberId);
+        user.getSubscibers().add(subscriber);
+        subscriber.getSubsciptions().add(user);
+        userRepository.save(user);
+        userRepository.save(subscriber);
+
+        Event event = new Event(userId, subscriberId, LocalDateTime.now());
+        eventRepository.save(event);
+    }
 
 
 }

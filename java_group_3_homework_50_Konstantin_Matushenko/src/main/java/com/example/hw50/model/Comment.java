@@ -13,13 +13,15 @@ public class Comment {
     @Id
     private String id;
     private String content;
+    private String publicationId;
     private LocalDateTime date;
     private String userId;
 
-    public Comment(String content, LocalDateTime date, String userId) {
+    public Comment(String content, LocalDateTime date, String userId, String publicationId) {
         this.content = content;
         this.date = date;
         this.userId = userId;
+        this.publicationId = publicationId;
     }
 
     public String getId() {

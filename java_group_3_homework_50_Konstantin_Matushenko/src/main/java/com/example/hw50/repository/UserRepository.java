@@ -6,6 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, String> {
 
     //Поиск юзера по имени
-    public User findUserByName(String name);
+    User findUserByName(String name);
+
+    User findUserByEmail(String email);
+
+    boolean existsByEmail(String email);
+
 
 }
