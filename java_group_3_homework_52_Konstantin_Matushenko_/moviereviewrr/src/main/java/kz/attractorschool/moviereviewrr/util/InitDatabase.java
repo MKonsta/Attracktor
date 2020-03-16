@@ -74,6 +74,10 @@ public class InitDatabase {
             System.out.println(movieRepo.getMoviesByTitleAndReleaseYearAndActorsAndRating(movie.getTitle(), movie.getReleaseYear(), movie.getActors(), movie.getRating()));
             System.out.println("=====================================");
 
+            System.out.println("=====================================");
+            System.out.println(userRepo.findUserByName(reviewer.getName()));
+            System.out.println("=====================================");
+
         };
     }
 
