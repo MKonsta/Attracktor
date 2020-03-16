@@ -20,15 +20,4 @@ public interface MovieRepository extends CrudRepository<Movie, String> {
 
     Iterable<Movie> findAllByTitle(String title);
 
-    for (User user : User.getUsers()){
-        for(Subscription subscription: Subscription.getSubscriptions()){
-            if(user.equals(subscription.getFollower())){
-                user.addFollowers(subscription.getFollower());
-            }
-            else
-            if(user.equals(subscription.getFollowing())){
-                user.addFollowings(subscription.getFollowing());
-            }
-        }
-    }
 }
