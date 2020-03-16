@@ -51,4 +51,64 @@ public class Movie {
                 .directors(Stream.generate(Generator::makeName).limit(r.nextInt(1) + 1).collect(toList()))
                 .build();
     }
+
+    public static Random getR() {
+        return r;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public List<String> getDirectors() {
+        return directors;
+    }
+
+    public void setDirectors(List<String> directors) {
+        this.directors = directors;
+    }
+
+    public List<String> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<String> actors) {
+        this.actors = actors;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 }
