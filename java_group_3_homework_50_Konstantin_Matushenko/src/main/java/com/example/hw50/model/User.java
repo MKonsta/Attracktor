@@ -25,9 +25,9 @@ public class User {
     private String email;
     private String password;
     @DBRef
-    private List<User> subsciptions; //подписки
+    private List<String> subsciptions; //подписки
     @DBRef
-    private List<User> subscibers; //подписчики
+    private List<String> subscibers; //подписчики
 
     @Autowired
     PublicationRepository publicationRepository;
@@ -72,19 +72,19 @@ public class User {
         this.password = password;
     }
 
-    public List<User> getSubsciptions() {
+    public List<String> getSubsciptions() {
         return subsciptions;
     }
 
-    public void setSubsciptions(List<User> subsciptions) {
+    public void setSubsciptions(List<String> subsciptions) {
         this.subsciptions = subsciptions;
     }
 
-    public List<User> getSubscibers() {
+    public List<String> getSubscibers() {
         return subscibers;
     }
 
-    public void setSubscibers(List<User> subscibers) {
+    public void setSubscibers(List<String> subscibers) {
         this.subscibers = subscibers;
     }
 }

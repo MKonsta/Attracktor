@@ -18,9 +18,9 @@ public class Controller {
     private UserServiceImpl userService;
 
     @GetMapping
-    public User getAllUsers() {
-//        return userService.getAll();
+    public List<User> getAllUsers() {
+        return userService.getAll();
 //        userService.getAll();
-        return new User("Ivan", "email@mail.ru", "123");
+//        return new User("Ivan", "email@mail.ru", "123");
     }
 }

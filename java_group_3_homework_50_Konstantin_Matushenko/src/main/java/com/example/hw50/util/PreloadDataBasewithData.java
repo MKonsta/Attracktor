@@ -51,6 +51,7 @@ public class PreloadDataBasewithData {
         publicationRepository.save(new Publication("img1", "text1", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
         publicationRepository.save(new Publication("img2", "text2", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
 
+
         userService.addComment("new Comment1", publicationRepository.findByDiscription("text0").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
         userService.addComment("new Comment2", publicationRepository.findByDiscription("text1").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
 
@@ -62,8 +63,9 @@ public class PreloadDataBasewithData {
         eventRepository.save(new Event(userRepository.findUserByName("Fedor").getId(), userRepository.findUserByName("Ivan").getId(), LocalDateTime.now()));
         eventRepository.save(new Event(userRepository.findUserByName("Grisha").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
 
-        userService.subscribe(userService.getUserByEmail("fed@mail.ru").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
+        userService.subscribe("fed@mail.ru", "ivan@mail.ru");
 
+        System.out.println(userRepository.findAll());
 
         return null;
     }

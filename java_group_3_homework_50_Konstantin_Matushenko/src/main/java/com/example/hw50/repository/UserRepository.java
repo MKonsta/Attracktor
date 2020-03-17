@@ -1,9 +1,10 @@
 package com.example.hw50.repository;
 
 import com.example.hw50.model.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserRepository extends MongoRepository<User, String> {
 
     //Поиск юзера по имени
     User findUserByName(String name);
@@ -11,6 +12,8 @@ public interface UserRepository extends CrudRepository<User, String> {
     User findUserByEmail(String email);
 
     boolean existsByEmail(String email);
+
+    void deleteByEmail(String email);
 
 
 }

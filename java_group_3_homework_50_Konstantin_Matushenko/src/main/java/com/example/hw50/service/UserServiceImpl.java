@@ -49,10 +49,10 @@ public class UserServiceImpl {
     public List<Publication> getLentaOfPubForUser(String email) {
         List<Publication> result = new ArrayList<>();
 
-        List<User> subscriptions  = userRepository.findUserByEmail(email).getSubsciptions();
+        List<String> folowers  = userRepository.findUserByEmail(email).getSubsciptions();
 
-        for (User user : subscriptions) {
-            result.addAll(getUsersPublications(user.getEmail()));
+        for (String followerEmail : folowers) {
+            result.addAll(getUsersPublications(followerEmail));
         }
 
         return result;
@@ -122,15 +122,22 @@ public class UserServiceImpl {
     }
 
     //подписка одного пользователя на другого
-    public void subscribe(String userId, String subscriberId) {
-        User user = getUserById(userId);
-        User subscriber = getUserById(subscriberId);
-        user.getSubscibers().add(subscriber);
-        subscriber.getSubsciptions().add(user);
+    public void subscribe(String userEmail, String subscriberEmail) {
+
+        User user = getUserByEmail(userEmail);
+        User subscriber = getUserByEmail(subscriberEmail);
+        user.getSubscibers().add(subscriber.getEmail());
+        subscriber.getSubsciptions().add(user.getEmail());
+
+        userRepository.deleteByEmail(user.getEmail());
+        userRepository.deleteByEmail(subscriber.getEmail());
+
+        user.setId(null);
+
         userRepository.save(user);
         userRepository.save(subscriber);
 
-        Event event = new Event(userId, subscriberId, LocalDateTime.now());
+        Event event = new Event(user.getId(), subscriber.getId(), LocalDateTime.now());
         eventRepository.save(event);
     }
 
