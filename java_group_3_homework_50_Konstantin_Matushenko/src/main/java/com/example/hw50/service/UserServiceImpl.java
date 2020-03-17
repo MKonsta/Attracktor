@@ -19,6 +19,7 @@ public class UserServiceImpl {
     private final EventRepository eventRepository;
 
 
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            PublicationRepository publicationRepository,
@@ -30,10 +31,6 @@ public class UserServiceImpl {
         this.likeRepository = likeRepository;
         this.commentRepository = commentRepository;
         this.eventRepository = eventRepository;
-    }
-
-    public User getUserByName(String name) {
-        return userRepository.findUserByName(name);
     }
 
     public User getUserByEmail(String email) {

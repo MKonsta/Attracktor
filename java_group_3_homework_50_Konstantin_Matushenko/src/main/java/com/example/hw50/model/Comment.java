@@ -1,12 +1,14 @@
 package com.example.hw50.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Document
+@Data
+@Document(collection = "comments")
 @CompoundIndex(def = "{'date':1, 'userId':1}")
 public class Comment {
 

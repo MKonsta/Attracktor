@@ -53,9 +53,6 @@ public class PreloadDataBasewithData {
 
         userService.addComment("new Comment1", publicationRepository.findByDiscription("text0").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
         userService.addComment("new Comment2", publicationRepository.findByDiscription("text1").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
-//        commentRepository.save(new Comment("Comment1", LocalDateTime.now(), userRepository.findUserByName("Fedor").getId()));
-//        commentRepository.save(new Comment("Comment2", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
-//        commentRepository.save(new Comment("Comment3", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
 
         likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
         likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
@@ -67,6 +64,7 @@ public class PreloadDataBasewithData {
 
         userService.subscribe(userService.getUserByEmail("fed@mail.ru").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
 
+
         return null;
     }
 
@@ -77,15 +75,6 @@ public class PreloadDataBasewithData {
         result.add(new User("Fedor", "fed@mail.ru", "123"));
         result.add(new User("Ivan", "ivan@mail.ru", "123"));
         result.add(new User("Grisha", "stepan@mail.ru", "123"));
-
-//        userService.subscribe(userService.getUserByEmail("fed@mail.ru").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
-
-
-//        User subscriber = userService.getUserById(userService.getUserByEmail("ivan@mail.ru").getId());
-//        user.getSubscibers().add(subscriber);
-//        subscriber.getSubsciptions().add(user);
-//        userRepository.save(user);
-//        userRepository.save(subscriber);
 
         return result;
     }

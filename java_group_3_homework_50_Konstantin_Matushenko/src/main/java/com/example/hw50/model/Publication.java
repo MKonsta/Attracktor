@@ -1,13 +1,14 @@
 package com.example.hw50.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-
-@Document
+@Data
+@Document(collection = "publications")
 public class Publication {
 
     @Id
