@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User, String> {
     User getFirstByEmailContaining(String i);
 
     User getUserByEmail(String email);
+
+    User findUserByName(String name);
 }

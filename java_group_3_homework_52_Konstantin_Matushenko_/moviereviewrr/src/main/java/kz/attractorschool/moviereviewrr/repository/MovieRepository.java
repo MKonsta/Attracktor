@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MovieRepository extends CrudRepository<Movie, String> {
 
@@ -20,15 +22,10 @@ public interface MovieRepository extends CrudRepository<Movie, String> {
 
     Iterable<Movie> findAllByTitle(String title);
 
-    for (User user : User.getUsers()){
-        for(Subscription subscription: Subscription.getSubscriptions()){
-            if(user.equals(subscription.getFollower())){
-                user.addFollowers(subscription.getFollower());
-            }
-            else
-            if(user.equals(subscription.getFollowing())){
-                user.addFollowings(subscription.getFollowing());
-            }
-        }
-    }
+    Movie findByTitle(String title);
+
+    @Query()
+    Iterable<Movie> getMoviesByTitleAndReleaseYearAndActorsAndRating
+            (String title, int releaseYear, List<String> actors, double rating);
+
 }

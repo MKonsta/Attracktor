@@ -64,10 +64,10 @@ public class Controller {
         return ur.findAll(s);
     }
 
-    @GetMapping("/reviewsofuser/{userid}")
-    public Iterable<Review> getReviewOfUser(@PathVariable("userid") String userId) {
+    @GetMapping("/reviewsofuser/{useremail}")
+    public Iterable<Review> getReviewOfUser(@PathVariable("useremail") String userEmail) {
 
-        return rr.findAllByReviewer(userId);
+        return rr.findAllByReviewer(ur.getUserByEmail(userEmail));
     }
 
 

@@ -42,4 +42,12 @@ public class Review {
                 .stars(r.nextInt(5)+1)
                 .build();
     }
+
+    public User getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
+    }
 }

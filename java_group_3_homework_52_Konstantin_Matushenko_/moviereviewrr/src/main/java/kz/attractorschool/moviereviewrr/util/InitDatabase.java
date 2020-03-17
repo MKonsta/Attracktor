@@ -58,6 +58,26 @@ public class InitDatabase {
 
             System.out.println(userRepo.getFirstByEmailContaining("@"));
 
+            System.out.println(movieRepo.findAllByTitle("Harry Potter"));
+
+            System.out.println("=====================================");
+
+            Movie movie = movieRepo.findByTitle("Harry Potter");
+            User reviewer = reviewRepository.findAllByMovie(movie).iterator().next().getReviewer();
+
+            System.out.println(movie);
+            System.out.println(reviewer);
+
+            System.out.println(reviewRepository.existsByReviewerAndMovie(reviewer, movie));
+
+            System.out.println("=====================================");
+            System.out.println(movieRepo.getMoviesByTitleAndReleaseYearAndActorsAndRating(movie.getTitle(), movie.getReleaseYear(), movie.getActors(), movie.getRating()));
+            System.out.println("=====================================");
+
+            System.out.println("=====================================");
+            System.out.println(userRepo.findUserByName(reviewer.getName()));
+            System.out.println("=====================================");
+
         };
     }
 
