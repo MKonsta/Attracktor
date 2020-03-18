@@ -28,7 +28,6 @@ public class Controller {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    @PostMapping(value = "",  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String addUser(@RequestBody User user) {
         System.out.println("++++++++++++++++++++++1111111111++++++++++++++++++++");
         userService.addNewUser(user.getName(), user.getEmail(), user.getPassword());

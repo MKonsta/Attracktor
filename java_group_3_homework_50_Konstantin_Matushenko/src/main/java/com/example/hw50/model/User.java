@@ -2,6 +2,7 @@ package com.example.hw50.model;
 
 import com.example.hw50.repository.PublicationRepository;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Data
 @Document(collection = "users")
-@ToString
+@NoArgsConstructor
 public class User {
 
     @Id

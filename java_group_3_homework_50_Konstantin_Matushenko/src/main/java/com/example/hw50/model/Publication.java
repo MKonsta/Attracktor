@@ -20,10 +20,10 @@ public class Publication {
     private LocalDateTime date;
     private String userId;
 
-    public Publication(String img, String discription, LocalDateTime date, String userId) {
+    public Publication(String img, String discription, String userId) {
         this.img = img;
         this.discription = discription;
-        this.date = date;
+        this.date = LocalDateTime.now();
         this.userId = userId;
     }
 

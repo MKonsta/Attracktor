@@ -104,7 +104,7 @@ public class UserServiceImpl {
     }
 
     public Publication addPublication(String text, String img, String userId) {
-        Publication publication = new Publication(img, text, LocalDateTime.now(), userId);
+        Publication publication = new Publication(img, text, userId);
         publicationRepository.save(publication);
         return publication;
     }

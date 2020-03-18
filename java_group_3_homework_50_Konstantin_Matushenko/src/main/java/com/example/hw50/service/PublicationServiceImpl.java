@@ -17,8 +17,14 @@ public class PublicationServiceImpl {
         this.pubRepo = publicationRepository;
     }
 
+
     public List<Publication> getAll() {
         return pubRepo.findAll();
+    }
+
+    public Publication addPub(Publication publication) {
+        pubRepo.save(publication);
+        return publication;
     }
 
 

@@ -47,9 +47,9 @@ public class PreloadDataBasewithData {
 
         userRepository.saveAll(createUsers());
 
-        publicationRepository.save(new Publication("img0", "text0", LocalDateTime.now(), userRepository.findUserByName("Fedor").getId()));
-        publicationRepository.save(new Publication("img1", "text1", LocalDateTime.now(), userRepository.findUserByName("Ivan").getId()));
-        publicationRepository.save(new Publication("img2", "text2", LocalDateTime.now(), userRepository.findUserByName("Grisha").getId()));
+        publicationRepository.save(new Publication("img0", "text0", userRepository.findUserByName("Fedor").getId()));
+        publicationRepository.save(new Publication("img1", "text1", userRepository.findUserByName("Ivan").getId()));
+        publicationRepository.save(new Publication("img2", "text2", userRepository.findUserByName("Grisha").getId()));
 
 
         userService.addComment("new Comment1", publicationRepository.findByDiscription("text0").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
