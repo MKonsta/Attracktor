@@ -12,4 +12,6 @@ public interface PublicationRepository extends MongoRepository<Publication, Stri
     Publication findByDiscription(String discription);
 
     List<Publication> findAllByUserId (String userId);
+
+    boolean existsById(String id);
 }

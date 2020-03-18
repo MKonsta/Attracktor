@@ -126,18 +126,21 @@ public class PreloadDataBasewithData {
         user.setName("Fedor");
         user.setEmail("fed@mail.ru");
         user.setPassword("123");
+        user.setSubscibers(new ArrayList<>());
         result.add(user);
 
         user = new User();
         user.setName("Ivan");
         user.setEmail("ivan@mail.ru");
         user.setPassword("123");
+        user.setSubscibers(new ArrayList<>());
         result.add(user);
 
         user = new User();
         user.setName("Grisha");
         user.setEmail("grisha@mail.ru");
         user.setPassword("123");
+        user.setSubscibers(new ArrayList<>());
         result.add(user);
 
         return result;
