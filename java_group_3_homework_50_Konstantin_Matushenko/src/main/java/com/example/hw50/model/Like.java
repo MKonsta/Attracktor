@@ -19,11 +19,11 @@ public class Like {
     private String publicationId;
     private LocalDateTime date;
 
-    public Like(String userID, String publicationId, LocalDateTime date) {
-        this.userID = userID;
-        this.publicationId = publicationId;
-        this.date = date;
-    }
+//    public Like(String userID, String publicationId, LocalDateTime date) {
+//        this.userID = userID;
+//        this.publicationId = publicationId;
+//        this.date = date;
+//    }
 
     public String getId() {
         return id;

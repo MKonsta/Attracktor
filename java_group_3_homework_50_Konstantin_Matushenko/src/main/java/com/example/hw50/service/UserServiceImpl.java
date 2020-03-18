@@ -33,6 +33,15 @@ public class UserServiceImpl {
         this.eventRepository = eventRepository;
     }
 
+    public User delete(String email) {
+        if (existsUser(email)) {
+            User user = getUserByEmail(email);
+            userRepository.deleteByEmail(email);
+            return user;
+        }
+        return null;
+    }
+
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
@@ -84,42 +93,34 @@ public class UserServiceImpl {
         userRepository.save(user);
     }
 
-    public void delete(String id) {
-        userRepository.deleteById(id);
-    }
-
     public List<User> getAll() {
         return (List<User>) userRepository.findAll();
     }
 
     //регистрация нового юзера
-    public User addNewUser(String name, String email, String password) {
+    public User addNewUser(User user) {
 
-        if (!existsUser(email)) {
-            User user = new User(name, email, password);
+        if (!existsUser(user.getEmail())) {
+            user.setSubsciptions(new ArrayList<>());
+            user.setSubscibers(new ArrayList<>());
             userRepository.save(user);
             return user;
         }
         return null;
     }
 
-    public Publication addPublication(String text, String img, String userId) {
-        Publication publication = new Publication(img, text, userId);
+    public Publication addPublication(Publication publication) {
         publicationRepository.save(publication);
         return publication;
     }
 
-    public Like addLike(String publicationId, String userId) {
-        Like like = new Like(userId, publicationId, LocalDateTime.now());
-        likeRepository.save(like);
-        return like;
-    }
+//    public Like addLike(String publicationId, String userId) {
+//        Like like = new Like(userId, publicationId, LocalDateTime.now());
+//        likeRepository.save(like);
+//        return like;
+//    }
 
-    public Comment addComment(String content,  String publicationId, String userId) {
-        Comment comment = new Comment(content, LocalDateTime.now(), userId, publicationId);
-        commentRepository.save(comment);
-        return comment;
-    }
+
 
     //подписка одного пользователя на другого
     public void subscribe(String userEmail, String subscriberEmail) {

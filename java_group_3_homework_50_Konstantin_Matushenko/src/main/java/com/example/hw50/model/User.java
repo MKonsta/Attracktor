@@ -28,16 +28,6 @@ public class User {
     private List<String> subsciptions; //подписки
     private List<String> subscibers; //подписчики
 
-    @Autowired
-    PublicationRepository publicationRepository;
-
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.subscibers = new ArrayList<>();
-        this.subsciptions = new ArrayList<>();
-    }
 
     public String getId() {
         return id;

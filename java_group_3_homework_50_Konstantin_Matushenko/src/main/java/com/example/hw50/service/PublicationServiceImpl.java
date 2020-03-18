@@ -22,10 +22,16 @@ public class PublicationServiceImpl {
         return pubRepo.findAll();
     }
 
-    public Publication addPub(Publication publication) {
+    public Publication addPublication(Publication publication) {
         pubRepo.save(publication);
         return publication;
     }
+
+    public Publication getByDescription(String disceiption) {
+       return pubRepo.findByDiscription(disceiption);
+    }
+
+
 
 
 }

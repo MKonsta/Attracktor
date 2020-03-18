@@ -2,7 +2,11 @@ package com.example.hw50.util;
 
 import com.example.hw50.model.*;
 import com.example.hw50.repository.*;
+import com.example.hw50.service.CommentServiceImpl;
+import com.example.hw50.service.LikeServiceImpl;
+import com.example.hw50.service.PublicationServiceImpl;
 import com.example.hw50.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +24,9 @@ public class PreloadDataBasewithData {
     private final LikeRepository likeRepository;
     private final EventRepository eventRepository;
     private final UserServiceImpl userService;
+    private final PublicationServiceImpl publicationService;
+    private final CommentServiceImpl commentService;
+    private final LikeServiceImpl likeService;
 
 
     public PreloadDataBasewithData(UserRepository userRepository,
@@ -27,13 +34,19 @@ public class PreloadDataBasewithData {
                                    CommentRepository commentRepository,
                                    LikeRepository likeRepository,
                                    EventRepository eventRepository,
-                                   UserServiceImpl userService) {
+                                   UserServiceImpl userService,
+                                   PublicationServiceImpl publicationService,
+                                   CommentServiceImpl commentService,
+                                   LikeServiceImpl likeService) {
         this.userRepository = userRepository;
         this.publicationRepository = publicationRepository;
         this.commentRepository = commentRepository;
         this.likeRepository = likeRepository;
         this.eventRepository = eventRepository;
         this.userService = userService;
+        this.publicationService = publicationService;
+        this.commentService = commentService;
+        this.likeService = likeService;
     }
 
     @Bean
@@ -47,23 +60,60 @@ public class PreloadDataBasewithData {
 
         userRepository.saveAll(createUsers());
 
-        publicationRepository.save(new Publication("img0", "text0", userRepository.findUserByName("Fedor").getId()));
-        publicationRepository.save(new Publication("img1", "text1", userRepository.findUserByName("Ivan").getId()));
-        publicationRepository.save(new Publication("img2", "text2", userRepository.findUserByName("Grisha").getId()));
+        Publication publication = new Publication();
+        publication.setImg("img0");
+        publication.setDiscription("disriptfewfqfwec");
+        publication.setDate(LocalDateTime.now());
+        publication.setUserId(userService.getUserByEmail("fed@mail.ru").getId());
+        publicationService.addPublication(publication);
+
+        publication = new Publication();
+        publication.setImg("img1");
+        publication.setDiscription("disrrrgwewgiptfewfqfwec");
+        publication.setDate(LocalDateTime.now());
+        publication.setUserId(userService.getUserByEmail("ivan@mail.ru").getId());
+        publicationService.addPublication(publication);
+
+        publication = new Publication();
+        publication.setImg("img2");
+        publication.setDiscription("disrrrgwewgiptfewfqfwec");
+        publication.setDate(LocalDateTime.now());
+        publication.setUserId(userService.getUserByEmail("grisha@mail.ru").getId());
+        publicationService.addPublication(publication);
 
 
-        userService.addComment("new Comment1", publicationRepository.findByDiscription("text0").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
-        userService.addComment("new Comment2", publicationRepository.findByDiscription("text1").getId(), userService.getUserByEmail("ivan@mail.ru").getId());
+        Comment comment = new Comment();
+        comment.setContent("WCeceafcdkdkrgerghrtsdssdsa");
+        comment.setUserId(userService.getUserByEmail("fed@mail.ru").getId());
+        commentService.addComment(comment);
 
-        likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
-        likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
-        likeRepository.save(new Like(userRepository.findUserByName("Grisha").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
+        comment = new Comment();
+        comment.setContent("WCeceafcfhdfdgtjuldkdkrgerghrtsdssdsa");
+        comment.setUserId(userService.getUserByEmail("ivan@mail.ru").getId());
+        commentService.addComment(comment);
 
-        eventRepository.save(new Event(userRepository.findUserByName("Ivan").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
-        eventRepository.save(new Event(userRepository.findUserByName("Fedor").getId(), userRepository.findUserByName("Ivan").getId(), LocalDateTime.now()));
-        eventRepository.save(new Event(userRepository.findUserByName("Grisha").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
+        comment = new Comment();
+        comment.setContent("WCeceafcfhdfdgtjuldkdkrge343jyukilurghrtsdssdsa");
+        comment.setUserId(userService.getUserByEmail("grisha@mail.ru").getId());
+        commentService.addComment(comment);
 
-        userService.subscribe("fed@mail.ru", "ivan@mail.ru");
+
+        Like like = new Like();
+        like.setPublicationId("gergwwwwweqrw");
+        like.setUserID(userService.getUserByEmail("ivan@mail.ru").getId());
+        likeService.addLike(like);
+
+
+
+//        likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
+//        likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
+//        likeRepository.save(new Like(userRepository.findUserByName("Grisha").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
+//
+//        eventRepository.save(new Event(userRepository.findUserByName("Ivan").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
+//        eventRepository.save(new Event(userRepository.findUserByName("Fedor").getId(), userRepository.findUserByName("Ivan").getId(), LocalDateTime.now()));
+//        eventRepository.save(new Event(userRepository.findUserByName("Grisha").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
+
+//        userService.subscribe("fed@mail.ru", "ivan@mail.ru");
 
         return null;
     }
@@ -72,9 +122,23 @@ public class PreloadDataBasewithData {
 
         List<User> result = new ArrayList<>();
 
-        result.add(new User("Fedor", "fed@mail.ru", "123"));
-        result.add(new User("Ivan", "ivan@mail.ru", "123"));
-        result.add(new User("Grisha", "stepan@mail.ru", "123"));
+        User user = new User();
+        user.setName("Fedor");
+        user.setEmail("fed@mail.ru");
+        user.setPassword("123");
+        result.add(user);
+
+        user = new User();
+        user.setName("Ivan");
+        user.setEmail("ivan@mail.ru");
+        user.setPassword("123");
+        result.add(user);
+
+        user = new User();
+        user.setName("Grisha");
+        user.setEmail("grisha@mail.ru");
+        user.setPassword("123");
+        result.add(user);
 
         return result;
     }

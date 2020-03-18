@@ -12,10 +12,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class Controller {
+public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public User addUser(@RequestBody User user) {
+        userService.addNewUser(user);
+        if (user.getId() == null) {
+            return null;
+        } else {
+            return user;
+        }
+    }
+//    {
+//        "name" : "Abram",
+//        "email" : "abram@mail.ru",
+//        "password" : "123"
+//    }
+
+    @DeleteMapping("/{email}")
+    public User deleteUser(@PathVariable String email) {
+        return userService.delete(email);
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -27,12 +47,7 @@ public class Controller {
         return userService.getUserByEmail(email);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public String addUser(@RequestBody User user) {
-        System.out.println("++++++++++++++++++++++1111111111++++++++++++++++++++");
-        userService.addNewUser(user.getName(), user.getEmail(), user.getPassword());
-        return "fff";
-    }
+
 
 
 }
