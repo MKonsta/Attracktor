@@ -65,8 +65,6 @@ public class PreloadDataBasewithData {
 
         userService.subscribe("fed@mail.ru", "ivan@mail.ru");
 
-        System.out.println(userRepository.findAll());
-
         return null;
     }
 

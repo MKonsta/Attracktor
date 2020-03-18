@@ -80,7 +80,7 @@ public class UserServiceImpl {
         return userRepository.findById(id).orElse(null);
     }
 
-    public void save(User user) {
+    public void addUser(User user) {
         userRepository.save(user);
     }
 
@@ -126,13 +126,9 @@ public class UserServiceImpl {
 
         User user = getUserByEmail(userEmail);
         User subscriber = getUserByEmail(subscriberEmail);
+
         user.getSubscibers().add(subscriber.getEmail());
         subscriber.getSubsciptions().add(user.getEmail());
-
-        userRepository.deleteByEmail(user.getEmail());
-        userRepository.deleteByEmail(subscriber.getEmail());
-
-        user.setId(null);
 
         userRepository.save(user);
         userRepository.save(subscriber);

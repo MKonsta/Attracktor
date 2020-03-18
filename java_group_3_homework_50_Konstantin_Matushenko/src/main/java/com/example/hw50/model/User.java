@@ -24,9 +24,7 @@ public class User {
     @Indexed
     private String email;
     private String password;
-    @DBRef
     private List<String> subsciptions; //подписки
-    @DBRef
     private List<String> subscibers; //подписчики
 
     @Autowired
