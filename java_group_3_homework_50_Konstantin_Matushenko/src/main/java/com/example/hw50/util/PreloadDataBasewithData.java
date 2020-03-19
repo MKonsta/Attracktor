@@ -52,10 +52,10 @@ public class PreloadDataBasewithData {
     @Bean
     CommandLineRunner initDatabase() {
 
-        userRepository.deleteAll();
-        publicationRepository.deleteAll();
-        commentRepository.deleteAll();
-        likeRepository.deleteAll();
+        userService.deleteAll();
+        publicationService.deleteAll();
+        commentService.deleteAll();
+        likeService.deleteAll();
         eventRepository.deleteAll();
 
         userRepository.saveAll(createUsers());
@@ -102,18 +102,6 @@ public class PreloadDataBasewithData {
         like.setPublicationId("gergwwwwweqrw");
         like.setUserID(userService.getUserByEmail("ivan@mail.ru").getId());
         likeService.addLike(like);
-
-
-
-//        likeRepository.save(new Like(userRepository.findUserByName("Fedor").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
-//        likeRepository.save(new Like(userRepository.findUserByName("Ivan").getId(), publicationRepository.findByDiscription("text1").getId(), LocalDateTime.now()));
-//        likeRepository.save(new Like(userRepository.findUserByName("Grisha").getId(), publicationRepository.findByDiscription("text0").getId(), LocalDateTime.now()));
-//
-//        eventRepository.save(new Event(userRepository.findUserByName("Ivan").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
-//        eventRepository.save(new Event(userRepository.findUserByName("Fedor").getId(), userRepository.findUserByName("Ivan").getId(), LocalDateTime.now()));
-//        eventRepository.save(new Event(userRepository.findUserByName("Grisha").getId(), userRepository.findUserByName("Fedor").getId(), LocalDateTime.now()));
-
-//        userService.subscribe("fed@mail.ru", "ivan@mail.ru");
 
         return null;
     }

@@ -42,6 +42,10 @@ public class UserServiceImpl {
         return null;
     }
 
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
+
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }

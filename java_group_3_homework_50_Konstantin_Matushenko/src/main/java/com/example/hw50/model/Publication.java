@@ -20,12 +20,6 @@ public class Publication {
     private LocalDateTime date;
     private String userId;
 
-//    public Publication(String img, String discription, String userId) {
-//        this.img = img;
-//        this.discription = discription;
-//        this.date = LocalDateTime.now();
-//        this.userId = userId;
-//    }
 
     public String getId() {
         return id;

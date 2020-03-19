@@ -22,4 +22,8 @@ public class CommentServiceImpl {
         commentRepository.save(comment);
         return comment;
     }
+
+    public void deleteAll() {
+        commentRepository.deleteAll();
+    }
 }

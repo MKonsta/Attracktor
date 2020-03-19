@@ -18,4 +18,8 @@ public class LikeServiceImpl {
     public Like addLike(Like like) {
         return likeRepository.save(like);
     }
+
+    public void deleteAll() {
+        likeRepository.deleteAll();
+    }
 }

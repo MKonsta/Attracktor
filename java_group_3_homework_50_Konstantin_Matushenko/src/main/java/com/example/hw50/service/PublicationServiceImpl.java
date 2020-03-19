@@ -37,6 +37,10 @@ public class PublicationServiceImpl {
         return publication;
     }
 
+    public void deleteAll() {
+        pubRepo.deleteAll();
+    }
+
     public Publication getById(String id) {
        return pubRepo.findById(id).orElse(null);
     }
