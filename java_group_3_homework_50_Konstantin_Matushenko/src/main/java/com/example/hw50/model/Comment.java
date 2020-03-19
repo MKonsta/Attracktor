@@ -51,4 +51,12 @@ public class Comment {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    public String getPublicationId() {
+        return publicationId;
+    }
+
+    public void setPublicationId(String publicationId) {
+        this.publicationId = publicationId;
+    }
 }

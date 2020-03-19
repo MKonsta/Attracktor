@@ -115,6 +115,7 @@ public class PreloadDataBasewithData {
         user.setEmail("fed@mail.ru");
         user.setPassword("123");
         user.setSubscibers(new ArrayList<>());
+        user.setSubsciptions(new ArrayList<>());
         result.add(user);
 
         user = new User();
@@ -122,6 +123,7 @@ public class PreloadDataBasewithData {
         user.setEmail("ivan@mail.ru");
         user.setPassword("123");
         user.setSubscibers(new ArrayList<>());
+        user.setSubsciptions(new ArrayList<>());
         result.add(user);
 
         user = new User();
@@ -129,6 +131,7 @@ public class PreloadDataBasewithData {
         user.setEmail("grisha@mail.ru");
         user.setPassword("123");
         user.setSubscibers(new ArrayList<>());
+        user.setSubsciptions(new ArrayList<>());
         result.add(user);
 
         return result;

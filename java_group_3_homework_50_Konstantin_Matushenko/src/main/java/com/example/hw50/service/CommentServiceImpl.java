@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CommentServiceImpl {
@@ -23,7 +24,31 @@ public class CommentServiceImpl {
         return comment;
     }
 
+    public void deleteById(String id) {
+        commentRepository.deleteById(id);
+    }
+
+    public boolean existsById(String id) {
+        return commentRepository.existsById(id);
+    }
+
     public void deleteAll() {
         commentRepository.deleteAll();
+    }
+
+    public Comment getById(String id) {
+        return commentRepository.getCommentById(id);
+    }
+
+    public List<Comment> getAll() {
+        return commentRepository.findAll();
+    }
+
+    public List<Comment> findAllByUserId(String userId) {
+        return commentRepository.findAllByUserId(userId);
+    }
+
+    public List<Comment> findAllByPublicationId(String userId) {
+        return commentRepository.findAllByUserId(userId);
     }
 }
