@@ -113,6 +113,13 @@ public class UserServiceImpl {
         return null;
     }
 
+    public User updateUser(User user) {
+        if (existsUser(user.getEmail())) {
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
     public Publication addPublication(Publication publication) {
         publicationRepository.save(publication);
         return publication;

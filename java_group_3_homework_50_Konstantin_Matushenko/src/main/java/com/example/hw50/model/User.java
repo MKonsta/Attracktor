@@ -25,8 +25,8 @@ public class User {
     @Indexed
     private String email;
     private String password;
-    private List<String> subsciptions; //подписки
-    private List<String> subscibers; //подписчики
+    private List<String> subsciptions; //подписки Emails
+    private List<String> subscibers; //подписчики Emails
 
 
     public String getId() {
