@@ -38,4 +38,8 @@ public class EventServiceImpl {
     public Event getById(String eventId) {
         return eventRepository.findById(eventId).orElse(null);
     }
+
+    public void deleteAll() {
+        eventRepository.deleteAll();
+    }
 }

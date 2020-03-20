@@ -5,6 +5,8 @@ import com.example.hw50.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LikeServiceImpl {
 
@@ -21,5 +23,21 @@ public class LikeServiceImpl {
 
     public void deleteAll() {
         likeRepository.deleteAll();
+    }
+
+    public List<Like> findAll() {
+        return likeRepository.findAll();
+    }
+
+    public boolean existsById(String likeId) {
+        return likeRepository.existsById(likeId);
+    }
+
+    public Like getLikeById(String likeId) {
+        return likeRepository.findById(likeId).orElse(null);
+    }
+
+    public void deleteById(String likeId) {
+        likeRepository.deleteById(likeId);
     }
 }

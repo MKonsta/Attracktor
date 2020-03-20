@@ -2,10 +2,7 @@ package com.example.hw50.util;
 
 import com.example.hw50.model.*;
 import com.example.hw50.repository.*;
-import com.example.hw50.service.CommentServiceImpl;
-import com.example.hw50.service.LikeServiceImpl;
-import com.example.hw50.service.PublicationServiceImpl;
-import com.example.hw50.service.UserServiceImpl;
+import com.example.hw50.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,35 +15,24 @@ import java.util.List;
 @Configuration
 public class PreloadDataBasewithData {
 
-    private final UserRepository userRepository;
-    private final PublicationRepository publicationRepository;
-    private final CommentRepository commentRepository;
-    private final LikeRepository likeRepository;
-    private final EventRepository eventRepository;
     private final UserServiceImpl userService;
     private final PublicationServiceImpl publicationService;
     private final CommentServiceImpl commentService;
     private final LikeServiceImpl likeService;
+    private final EventServiceImpl eventService;
 
 
-    public PreloadDataBasewithData(UserRepository userRepository,
-                                   PublicationRepository publicationRepository,
-                                   CommentRepository commentRepository,
-                                   LikeRepository likeRepository,
-                                   EventRepository eventRepository,
-                                   UserServiceImpl userService,
+    public PreloadDataBasewithData(UserServiceImpl userService,
                                    PublicationServiceImpl publicationService,
                                    CommentServiceImpl commentService,
-                                   LikeServiceImpl likeService) {
-        this.userRepository = userRepository;
-        this.publicationRepository = publicationRepository;
-        this.commentRepository = commentRepository;
-        this.likeRepository = likeRepository;
-        this.eventRepository = eventRepository;
+                                   LikeServiceImpl likeService,
+                                   EventServiceImpl eventService) {
+
         this.userService = userService;
         this.publicationService = publicationService;
         this.commentService = commentService;
         this.likeService = likeService;
+        this.eventService = eventService;
     }
 
     @Bean
@@ -56,9 +42,9 @@ public class PreloadDataBasewithData {
         publicationService.deleteAll();
         commentService.deleteAll();
         likeService.deleteAll();
-        eventRepository.deleteAll();
+        eventService.deleteAll();
 
-        userRepository.saveAll(createUsers());
+        userService.addAllUsers(createUsers());
 
         Publication publication = new Publication();
         publication.setImg("img0");

@@ -5,7 +5,6 @@ import com.example.hw50.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,23 +53,6 @@ public class UserServiceImpl {
         return userRepository.existsByEmail(email);
     }
 
-    public List<Publication> getUsersPublications(String email) {
-        return publicationRepository.findAllByUserId(getUserByEmail(email).getId());
-    }
-
-    //Выборка публикаций для своей ленты на основе подписок на других пользователей
-    public List<Publication> getLentaOfPubForUser(String email) {
-        List<Publication> result = new ArrayList<>();
-
-        List<String> folowers  = userRepository.findUserByEmail(email).getSubsciptions();
-
-        for (String followerEmail : folowers) {
-            result.addAll(getUsersPublications(followerEmail));
-        }
-
-        return result;
-    }
-
     //Проверка на установку "лайка" на публикацию.
     public boolean checkLikeForPublication(String userEmail, String publicationId) {
 
@@ -93,12 +75,8 @@ public class UserServiceImpl {
         return userRepository.findById(id).orElse(null);
     }
 
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
-
     public List<User> getAll() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
 
     //регистрация нового юзера
@@ -120,33 +98,8 @@ public class UserServiceImpl {
         return null;
     }
 
-    public Publication addPublication(Publication publication) {
-        publicationRepository.save(publication);
-        return publication;
-    }
-
-//    public Like addLike(String publicationId, String userId) {
-//        Like like = new Like(userId, publicationId, LocalDateTime.now());
-//        likeRepository.save(like);
-//        return like;
-//    }
-
-
-
-    //подписка одного пользователя на другого
-    public void subscribe(String userEmail, String subscriberEmail) {
-
-        User user = getUserByEmail(userEmail);
-        User subscriber = getUserByEmail(subscriberEmail);
-
-        user.getSubscibers().add(subscriber.getEmail());
-        subscriber.getSubsciptions().add(user.getEmail());
-
-        userRepository.save(user);
-        userRepository.save(subscriber);
-
-        Event event = new Event(user.getId(), subscriber.getId(), LocalDateTime.now());
-        eventRepository.save(event);
+    public void addAllUsers(List<User> users) {
+        userRepository.saveAll(users);
     }
 
 
