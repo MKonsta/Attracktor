@@ -1,5 +1,6 @@
 package com.example.hw50.util;
 
+import com.example.hw50.SecurityConfig;
 import com.example.hw50.model.*;
 import com.example.hw50.repository.*;
 import com.example.hw50.service.*;
@@ -99,7 +100,7 @@ public class PreloadDataBasewithData {
         User user = new User();
         user.setName("Fedor");
         user.setEmail("fed@mail.ru");
-        user.setPassword("123");
+        user.setPassword(new SecurityConfig().encoder().encode("123"));
         user.setSubscibers(new ArrayList<>());
         user.setSubsciptions(new ArrayList<>());
         result.add(user);
@@ -107,7 +108,7 @@ public class PreloadDataBasewithData {
         user = new User();
         user.setName("Ivan");
         user.setEmail("ivan@mail.ru");
-        user.setPassword("123");
+        user.setPassword(new SecurityConfig().encoder().encode("123"));
         user.setSubscibers(new ArrayList<>());
         user.setSubsciptions(new ArrayList<>());
         result.add(user);
@@ -115,7 +116,7 @@ public class PreloadDataBasewithData {
         user = new User();
         user.setName("Grisha");
         user.setEmail("grisha@mail.ru");
-        user.setPassword("123");
+        user.setPassword(new SecurityConfig().encoder().encode("123"));
         user.setSubscibers(new ArrayList<>());
         user.setSubsciptions(new ArrayList<>());
         result.add(user);

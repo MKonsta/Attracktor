@@ -23,7 +23,7 @@ public class LikeController {
         return likeService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path = "/add")
     public Like addLike(@RequestBody Like like) {
         return likeService.addLike(like);
     }

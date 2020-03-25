@@ -98,6 +98,10 @@ public class UserServiceImpl {
         return null;
     }
 
+    public User getByName(String name) {
+        return userRepository.findUserByName(name);
+    }
+
     public void addAllUsers(List<User> users) {
         userRepository.saveAll(users);
     }

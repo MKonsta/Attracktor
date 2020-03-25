@@ -1,6 +1,8 @@
 package com.example.hw50.service;
 
 import com.example.hw50.model.Publication;
+import com.example.hw50.model.User;
+import com.example.hw50.repository.CommentRepository;
 import com.example.hw50.repository.PublicationRepository;
 import com.example.hw50.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,15 @@ public class PublicationServiceImpl {
 
     private final PublicationRepository pubRepo;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
     public PublicationServiceImpl(PublicationRepository publicationRepository,
-                                  UserRepository userRepository) {
+                                  UserRepository userRepository,
+                                  CommentRepository commentRepository) {
         this.pubRepo = publicationRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     public List<Publication> getAll() {
@@ -45,14 +50,25 @@ public class PublicationServiceImpl {
        return pubRepo.findById(id).orElse(null);
     }
 
-    public Publication delete(String id) {
-        if (existsById(id)) {
-            Publication publication = getById(id);
-            pubRepo.delete(publication);
-            return publication;
+
+    public Publication delete(String publicationId, User user) {
+
+        if (existsById(publicationId) && user != null) {
+
+            Publication publication = getById(publicationId);
+
+            if (publication.getUserId().equals(user.getId())) { //при удалении публикации, удаляются и все комментарии к ней
+
+                pubRepo.delete(publication);
+                commentRepository.deleteAllByPublicationId(publicationId);
+                return publication;
+
+            }
+
         }
         return null;
     }
+
 
     //Ищет все публикации пользователя по мылу
     public List<Publication> getAllByUserEmail(String email) {

@@ -22,7 +22,7 @@ public class EventController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping(path = "/add")
     public Event addEvent(@RequestBody Event event) {
 
         User publisher = userService.getUserById(event.getPublisherUserId());
