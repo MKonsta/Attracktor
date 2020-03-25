@@ -1,8 +1,10 @@
 package com.example.hw50.controller;
 
 import com.example.hw50.model.Like;
+import com.example.hw50.model.User;
 import com.example.hw50.service.LikeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,11 @@ public class LikeController {
     }
 
     @PostMapping(path = "/add")
-    public Like addLike(@RequestBody Like like) {
+    public Like addLike(@RequestBody Like like, Authentication authentication) {
+        if (authentication != null) {
+            User user = (User) authentication.getPrincipal();
+            like.setUserID(user.getId());
+        }
         return likeService.addLike(like);
     }
 
