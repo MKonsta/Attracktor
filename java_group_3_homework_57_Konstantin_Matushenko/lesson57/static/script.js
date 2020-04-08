@@ -148,28 +148,41 @@ like.addEventListener('click',  function () {
     if (this.classList.contains("text-danger")) {
         this.classList.remove("text-danger");
         this.classList.add('muted');
-        this.getElementsByClassName("fa-heart").classList.remove('fas');
-        this.getElementsByClassName("fa-heart").classList.add('far');
+        this.children[0].classList.remove('fas');
+        this.children[0].classList.add('far');
     } else {
         this.classList.remove('muted');
         this.classList.add('text-danger');
-        this.getElementsByClassName("fa-heart").classList.remove('far');
-        this.getElementsByClassName("fa-heart").classList.add('fas');
+        this.children[0].classList.remove('far');
+        this.children[0].classList.add('fas');
     }
 });
 
-like.ondblclick = function () {
-    if (this.classList.contains("text-danger")) {
-        this.classList.remove("text-danger");
-        this.classList.add('muted');
-        this.getElementsByClassName("fa-heart").classList.remove('fas');
-        this.getElementsByClassName("fa-heart").classList.add('far');
+//Ставим / убираем лайк по клику на картинку
+var picture = document.getElementById('picture');
+picture.ondblclick = function () {
+    if (like.classList.contains("text-danger")) {
+        like.classList.remove("text-danger");
+        like.classList.add('muted');
+        like.children[0].classList.remove('fas');
+        like.children[0].classList.add('far');
     } else {
-        this.classList.remove('muted');
-        this.classList.add('text-danger');
-        this.getElementsByClassName("fa-heart").classList.remove('far');
-        this.getElementsByClassName("fa-heart").classList.add('fas');
+        like.classList.remove('muted');
+        like.classList.add('text-danger');
+        like.children[0].classList.remove('far');
+        like.children[0].classList.add('fas');
     }
 };
 
-var bookmark = document.getElementById("bookmark");
+var bookmark = document.getElementById('bookmark');
+//Добавляем / убираем из закладок за 1 клик
+bookmark.addEventListener('click',  function () {
+    if (this.classList.contains("far")) {
+        this.classList.remove("far");
+        this.classList.add('fas');
+    } else {
+        this.classList.remove('fas');
+        this.classList.add('far');
+    }
+});
+
