@@ -99,11 +99,11 @@ function createPostElement(post) {
                             <!-- post reactions block start -->
                             <div class="d-flex justify-content-around">
                               <span class="h1 mx-2 text-danger">
-                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-heart noLike"></i>
                               </span>
-                                <span class="h1 mx-2 muted">
-                                    <i class="far fa-heart"></i>
-                                </span>
+<!--                                <span class="h1 mx-2 muted">-->
+<!--                                    <i class="far fa-heart"></i>-->
+<!--                                </span>-->
                                 <span class="h1 mx-2 muted">
                                     <i class="far fa-comment"></i>
                                 </span>
@@ -141,6 +141,35 @@ function addPost(newPost) {
     document.getElementById("posts").append(newPost);
 }
 
+//Ставим / убираем лайк за 1 клик
+var like = document.getElementById('like');
 
+like.addEventListener('click',  function () {
+    if (this.classList.contains("text-danger")) {
+        this.classList.remove("text-danger");
+        this.classList.add('muted');
+        this.getElementsByClassName("fa-heart").classList.remove('fas');
+        this.getElementsByClassName("fa-heart").classList.add('far');
+    } else {
+        this.classList.remove('muted');
+        this.classList.add('text-danger');
+        this.getElementsByClassName("fa-heart").classList.remove('far');
+        this.getElementsByClassName("fa-heart").classList.add('fas');
+    }
+});
 
+like.ondblclick = function () {
+    if (this.classList.contains("text-danger")) {
+        this.classList.remove("text-danger");
+        this.classList.add('muted');
+        this.getElementsByClassName("fa-heart").classList.remove('fas');
+        this.getElementsByClassName("fa-heart").classList.add('far');
+    } else {
+        this.classList.remove('muted');
+        this.classList.add('text-danger');
+        this.getElementsByClassName("fa-heart").classList.remove('far');
+        this.getElementsByClassName("fa-heart").classList.add('fas');
+    }
+};
 
+var bookmark = document.getElementById("bookmark");
