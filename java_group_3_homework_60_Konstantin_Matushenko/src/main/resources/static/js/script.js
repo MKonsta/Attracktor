@@ -28,14 +28,14 @@ let comment = {
 };
 
 let posts = [
-        post,
-        {
-            id : 45,
-            title : 'About Bish',
-            content : 'this is a city',
-            autorEmail : 'div@mail.ru',
-        }
-    ];
+    post,
+    {
+        id : 45,
+        title : 'About Bish',
+        content : 'this is a city',
+        autorEmail : 'div@mail.ru',
+    }
+];
 
 
 function addPostToArray(postsArray, post) {
@@ -84,7 +84,7 @@ function createCommentElement(comment) {
 }
 
 function addComment(com) {
-   document.getElementById("comments").append(com);
+    document.getElementById("comments").append(com);
 }
 
 function createPostElement(imgUrl, content) {
@@ -189,3 +189,20 @@ bookmark.addEventListener('click',  function () {
     }
 });
 
+const saveButton = document.getElementById("post-form");
+saveButton.addEventListener("submit", function () {
+    let data = new FormData(saveButton);
+
+    fetch("http://localhost:8080/addpost", {
+        method: 'POST',
+        body: data
+    }).then(r => r.json()).then(data => {window.location.href = "http://localhost:8080/index"});
+
+});
+
+// window.addEventListener('load', function () {
+//
+//     const saveButton = document.getElementById("createPost");
+//
+//
+// });
