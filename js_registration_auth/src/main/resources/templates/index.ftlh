@@ -25,7 +25,7 @@
                 <h3>Вход</h3>
                 <input type="text" name="username" class="form-control mb-1" placeholder="Логин">
                 <input type="password" name="password" class="form-control mb-1" placeholder="Пароль">
-                <button class="btn btn-outline-primary btn-block">Войти</button>
+                <button type="submit" class="btn btn-outline-primary btn-block">Войти</button>
             </form>
         </div>
     </div>
@@ -35,3 +35,4 @@
 </html>
 
 <script src="js/script.js"></script>
+<script src="js/login.js"></script>

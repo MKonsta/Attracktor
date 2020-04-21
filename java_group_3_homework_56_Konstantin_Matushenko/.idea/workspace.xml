@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc68ae6f-5eae-4eed-b9a6-ab99f0c271de" name="Default Changelist" comment="" />
+    <list default="true" id="dc68ae6f-5eae-4eed-b9a6-ab99f0c271de" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson56lab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lesson56lab.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js_registration_auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../js_registration_auth/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/controller/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/repo/PersonRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/repo/PersonRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/util/PreloadDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/../js_registration_auth/src/main/java/com/example/demo/util/PreloadDb.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -17,10 +41,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1ZnxH8lVgam3T6TSsdZRaZw6btg" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent">
@@ -31,7 +55,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/demo/util" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -75,6 +102,7 @@
       <updated>1585488568073</updated>
       <workItem from="1585488574995" duration="14284000" />
       <workItem from="1585673107283" duration="243000" />
+      <workItem from="1587403773324" duration="2329000" />
     </task>
     <servers />
   </component>

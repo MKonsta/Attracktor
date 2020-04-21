@@ -1,7 +1,9 @@
 package com.example.demo.util;
 
+import com.example.demo.SecurityConfig;
 import com.example.demo.model.Person;
 import com.example.demo.repo.PersonRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class PreloadDb {
 
     private final PersonRepo personRepo;
+    @Autowired
+    SecurityConfig securityConfig;
 
     public PreloadDb(PersonRepo personRepo) {
         this.personRepo = personRepo;
@@ -18,6 +22,7 @@ public class PreloadDb {
     void initDb() {
         personRepo.deleteAll();
 
-        personRepo.save(new Person("kos@gmail.ru", "Konstantin", "kos", "123"));
+        personRepo.save(new Person("kos@gmail.ru", "Konstantin",
+                "kos", securityConfig.encoder().encode("123")));
     }
 }
