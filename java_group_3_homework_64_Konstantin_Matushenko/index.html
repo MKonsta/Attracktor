@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div>
+    <h1>Список дел</h1>
+    <div>
+        <form id="itemForm">
+            <input type="text" pattern=".{2,}" name="item" minlength="2" id="f1">
+            <button type="button" onclick="addItem()">Добавить</button>
+        </form>
+    </div>
+    <div>
+        <ul id="list" style="user-select: none">
+<!--            <li onclick="f(this.id)" id="0">000</li>-->
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="script.js"></script>
